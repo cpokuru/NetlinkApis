@@ -1,0 +1,32 @@
+sudo apt-get install libnl-3-dev libnl-genl-3-dev
+sudo modprobe mac80211_hwsim radios=1
+driver$ gcc -o create_wlan_interfaces create_wlan_interfaces.c -I/usr/include/libnl3 -lnl-3 -lnl-genl-3
+ubuntu@trusty-chimaera:~/my_network_driver$ sudo ./create_wlan_interfaces 
+nl80211 driver ID: 34
+Creating interface: wlan1 on phy index: 5
+Netlink message sent successfully
+Netlink message received successfully
+Creating interface: wlan2 on phy index: 5
+Netlink message sent successfully
+Netlink message received successfully
+Interfaces wlan1 and wlan2 created successfully.
+ubuntu@trusty-chimaera:~/my_network_driver$ iw dev
+phy#5
+	Interface wlan2
+		ifindex 15
+		wdev 0x500000003
+		addr 02:00:00:00:00:00
+		type managed
+		txpower 0.00 dBm
+	Interface wlan1
+		ifindex 14
+		wdev 0x500000002
+		addr 42:00:00:00:00:00
+		type managed
+		txpower 0.00 dBm
+	Interface wlan0
+		ifindex 12
+		wdev 0x500000001
+		addr 02:00:00:00:00:00
+		type managed
+		txpower 0.00 dBm
