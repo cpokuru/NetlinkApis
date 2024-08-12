@@ -87,13 +87,13 @@ int main() {
     }
     printf("nl80211 driver ID: %d\n", driver_id);
 
-    if (create_interface(socket, driver_id, 5, "wlan1") < 0) {
+    if (create_interface(socket, driver_id, 6, "wlan1") < 0) {
     fprintf(stderr, "Failed to create wlan1 interface.\n");
     nl_socket_free(socket);
     return -1;
     }
     
-    if (create_interface(socket, driver_id, 5, "wlan2") < 0) {
+    if (create_interface(socket, driver_id, 6, "wlan2") < 0) {
     fprintf(stderr, "Failed to create wlan1 interface.\n");
     nl_socket_free(socket);
     return -1;
@@ -112,7 +112,8 @@ int main() {
     }
 */
     printf("Interfaces wlan1 and wlan2 created successfully.\n");
-
+    system("sudo iw dev wlan1 set type __ap");
+    system("sudo iw dev wlan2 set type __ap");
     nl_socket_free(socket);
     return 0;
 }
